@@ -48,5 +48,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(result)
+	for key,value := range result {
+		fmt.Printf("Key: %s, Value: %v, Type: %s\n", key, value, parser.DetectType(value))
+	}
 }
