@@ -54,9 +54,14 @@ func TestParseJSON_Success(t *testing.T) {
 	}
 
 	// Test Specific Fields
-	if result["age"] != 30 {
-		t.Errorf("Expected age to be 30, got %v", result["age"])
+	if age, ok := result["age"].(float64); ok {
+		if age != 30 {
+			t.Errorf("Expected age to be 30, got %v", age)
+		}
+	} else {
+		t.Errorf("Expected age to be float64, but got %T", result["age"])
 	}
+	
 	if result["isActive"] != true {
 		t.Errorf("Expected isActive to be true, got %v", result["isActive"])
 	}
