@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/Parutix/json2go/generator"
 	"github.com/Parutix/json2go/parser"
 )
 
@@ -51,4 +52,7 @@ func main() {
 	for key,value := range result {
 		fmt.Printf("Key: %s, Value: %v, Type: %s\n", key, value, parser.DetectType(value))
 	}
+
+  str := generator.GenerateStruct("Person", result)
+  fmt.Println(str)
 }
