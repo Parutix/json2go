@@ -5,8 +5,7 @@ import (
 )
 
 func TestDetectType_Succes(t *testing.T) {
-	jsonData := []byte(
-		`{
+	jsonData := []byte(`{
 		"name": "John Doe",
 		"age": 30,
 		"email": "john.doe@example.com",
@@ -43,11 +42,16 @@ func TestDetectType_Succes(t *testing.T) {
 			}
 		]
 	}`)
-
-	result, _ := ParseJSON(jsonData)
-	for key, value := range result {
-		if DetectType(value) == "unknown" {
-			t.Errorf("Expected type to be known, got unknown for key %s", key)
+		result, _ := ParseJSON(jsonData)
+		for key, value := range result {
+			if key == "" {
+				t.Error("Expected key to be not empty")
+			}
+			if value == nil {
+				t.Error("Expected value to be not nil")
+			}
+			if DetectType(value) == "unknown" {
+				t.Error("Expected type to be known")
+			}
 		}
-	}
 }
