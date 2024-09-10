@@ -10,20 +10,70 @@ import (
 func GenerateStruct(structName string, jsonData map[string]interface{}) string {
 	var sb strings.Builder
 	sb.WriteString(fmt.Sprintf("type %s struct {\n", structName))
-	
+
 	for key, value := range jsonData {
-		fieldName, err := UpperFirst(key)
-		if err != nil {
-			fieldName = key
+		fieldType := ""
+		fieldName, _ := UpperFirst(key)
+
+		if parser.IsPrimitive(value) {
+			fieldType = parser.DetectType(value)
+			sb.WriteString(fmt.Sprintf("\t%s %s `json:\"%s\"`\n", fieldName, fieldType, key))
+		} else {
+			switch v := value.(type) {
+			case map[string]interface{}:
+				sb.WriteString(fmt.Sprintf("\t%s struct {\n", fieldName))
+				ContinueStruct(&sb, v)
+				sb.WriteString(fmt.Sprintf("\t} `json:\"%s\"`\n", key))
+			case []interface{}:
+				if len(v) > 0 {
+					if firstElem, ok := v[0].(map[string]interface{}); ok {
+						sb.WriteString(fmt.Sprintf("\t%s []struct {\n", fieldName))
+						ContinueStruct(&sb, firstElem)
+						sb.WriteString(fmt.Sprintf("\t} `json:\"%s\"`\n", key))
+					} else {
+						fieldType = parser.DetectType(v[0])
+						sb.WriteString(fmt.Sprintf("\t%s []%s `json:\"%s\"`\n", fieldName, fieldType, key))
+					}
+				}
+			default:
+				fmt.Printf("Unhandled type for key: %s, value: %v\n", key, value)
+			}
 		}
-
-		fieldType := parser.DetectType(value)
-
-		sb.WriteString(fmt.Sprintf("\t%s %s `json:\"%s\"`\n", fieldName, fieldType, key))
-		
 	}
 	sb.WriteString("}\n")
 	return sb.String()
+}
+
+func ContinueStruct(sb *strings.Builder, jsonData map[string]interface{}) {
+	for key, value := range jsonData {
+		fieldType := ""
+		fieldName, _ := UpperFirst(key)
+
+		if parser.IsPrimitive(value) {
+			fieldType = parser.DetectType(value)
+			sb.WriteString(fmt.Sprintf("\t%s %s `json:\"%s\"`\n", fieldName, fieldType, key))
+		} else {
+			switch v := value.(type) {
+			case map[string]interface{}:
+				sb.WriteString(fmt.Sprintf("\t%s struct {\n", fieldName))
+				ContinueStruct(sb, v)
+				sb.WriteString(fmt.Sprintf("\t} `json:\"%s\"`\n", key))
+			case []interface{}:
+				if len(v) > 0 {
+					if firstElem, ok := v[0].(map[string]interface{}); ok {
+						sb.WriteString(fmt.Sprintf("\t%s []struct {\n", fieldName))
+						ContinueStruct(sb, firstElem)
+						sb.WriteString(fmt.Sprintf("\t} `json:\"%s\"`\n", key))
+					} else {
+						fieldType = parser.DetectType(v[0])
+						sb.WriteString(fmt.Sprintf("\t%s []%s `json:\"%s\"`\n", fieldName, fieldType, key))
+					}
+				}
+			default:
+				fmt.Printf("Unhandled type for key: %s, value: %v\n", key, value)
+			}
+		}
+	}
 }
 
 func UpperFirst(s string) (string, error) {
