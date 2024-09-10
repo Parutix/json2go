@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/Parutix/json2go/formatter"
 	"github.com/Parutix/json2go/generator"
 	"github.com/Parutix/json2go/parser"
 )
@@ -54,5 +55,6 @@ func main() {
 	}
 
   str := generator.GenerateStruct("Person", result)
+  str, _ = formatter.FormatStruct(str)
   fmt.Println(str)
 }
