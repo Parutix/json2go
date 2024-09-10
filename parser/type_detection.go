@@ -18,3 +18,12 @@ func DetectType(value interface{}) string {
 		return "unknown"
 	}
 }
+
+func IsPrimitive(value interface{}) bool {
+	switch value.(type) {
+	case string, float64, bool, int:
+		return true
+	default:
+		return false
+	}
+}
