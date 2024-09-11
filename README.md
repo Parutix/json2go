@@ -2,11 +2,11 @@
 
 json2go is a command-line tool that simplifies the process of converting JSON data into Go structs. It automatically generates Go struct definitions based on your JSON input, allowing you to seamlessly integrate and work with JSON data in your Go applications.
 
-## Motivation
+## 🔥 Motivation
 
 In the development of Go applications, working with JSON data often involves creating and maintaining complex struct definitions manually. This process can be time-consuming and error-prone, especially when dealing with large or evolving JSON schemas. json2go was created to address this challenge by automating the conversion of JSON data into Go structs.
 
-### Goal
+## 🥅 Goal
 
 The primary goal of json2go is to streamline the process of converting JSON data into Go struct definitions. By automating this conversion, json2go aims to eliminate manual, error-prone tasks and accelerate development. 
 
@@ -18,10 +18,10 @@ Open a terminal and write:
 
 go install github.com/Parutix/json2go
 
-## Usage
+## 💻 Usage
 
 json2go <input.json> <output.go> struct_name  
 
-## Contact
+## 📞 Contact
 
 (https://parutix.github.io/Portfolio/views/contact.html)
