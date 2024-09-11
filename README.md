@@ -16,7 +16,9 @@ The application seeks to enhance productivity and code quality for Go developers
 
 To install json2go, open your terminal and run:
 
+```bash
 go get github.com/Parutix/json2go
+```
 
 ## 💻 Usage
 
