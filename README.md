@@ -22,3 +22,5 @@ go install github.com/Parutix/json2go
 
 json2go <input.json> <output.go> <structName>
 
+
+
