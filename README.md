@@ -18,7 +18,7 @@ Open a terminal and write:
 
 go install github.com/Parutix/json2go
 
-### Usage
+## Usage
 
 json2go <input.json> <output.go> <structName>
 
