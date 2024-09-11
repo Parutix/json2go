@@ -28,4 +28,4 @@ Replace <input.json> with your JSON file, <output.go> with the desired output fi
 
 ## 📞 Contact
 
-For more information or to get in touch, visit: Contact(https://parutix.github.io/Portfolio/views/contact.html)
+For more information or to get in touch, visit: [Contact](https://parutix.github.io/Portfolio/views/contact.html)
