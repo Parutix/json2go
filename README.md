@@ -20,7 +20,7 @@ go install github.com/Parutix/json2go
 
 ## Usage
 
-json2go <input.json> <output.go> <structName>
+json2go <input.json> <output.go> struct_name  
 
 ## Contact
 
