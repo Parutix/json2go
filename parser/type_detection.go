@@ -1,5 +1,6 @@
 package parser
 
+// DetectType detects the type of a value
 func DetectType(value interface{}) string {
 	switch value.(type) {
 	case string:
@@ -19,6 +20,7 @@ func DetectType(value interface{}) string {
 	}
 }
 
+// IsPrimitive checks if a value is a primitive type
 func IsPrimitive(value interface{}) bool {
 	switch value.(type) {
 	case string, float64, bool, int:

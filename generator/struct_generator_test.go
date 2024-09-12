@@ -7,6 +7,8 @@ import (
 	"github.com/Parutix/json2go/formatter"
 	"github.com/Parutix/json2go/parser"
 )
+
+// Take in consideration that the generated structs will not have fields in the same order as the JSON
 		
 func TestEmptyJSON(t *testing.T) {
 	jsonData := []byte(`{}`)

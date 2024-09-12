@@ -9,11 +9,13 @@ import (
 	"github.com/Parutix/json2go/parser"
 )
 
+// checkFileExists checks if a file exists
 func checkFileExists(filePath string) bool {
 	_, err := os.Stat(filePath)
 	return !os.IsNotExist(err)
 }
 
+// Run runs the CLI
 func Run() {
 	if len(os.Args) < 3 {
 		fmt.Println("Usage: json2go <input.json> <output.go> <structName>")
@@ -41,6 +43,7 @@ func Run() {
 		return
 	}
 
+	// Check if the output file exists, if not create it
 	if !checkFileExists(os.Args[2]) {
 		_, err := os.Create(os.Args[2])
 		if err != nil {
@@ -50,5 +53,6 @@ func Run() {
 	}
 	outputFile := os.Args[2]
 	
+	// Write the formatted struct to the output file
 	err = os.WriteFile(outputFile, []byte(str), 0644)
 }
