@@ -4,16 +4,24 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/Parutix/json2go/formatter"
 	"github.com/Parutix/json2go/parser"
 )
 
 func GenerateStruct(structName string, jsonData map[string]interface{}) string {
 	var sb strings.Builder
+	sb.WriteString("package main\n\n")
 	sb.WriteString(fmt.Sprintf("type %s struct {\n", structName))
 
 	for key, value := range jsonData {
 		fieldType := ""
-		fieldName, _ := UpperFirst(key)
+		
+		fieldName := key
+		if formatter.CheckStartingDigit(key) {
+			fieldName = "_" + key
+		} else {
+			fieldName, _ = UpperFirst(key)
+		}
 
 		if parser.IsPrimitive(value) {
 			fieldType = parser.DetectType(value)
@@ -47,7 +55,13 @@ func GenerateStruct(structName string, jsonData map[string]interface{}) string {
 func ContinueStruct(sb *strings.Builder, jsonData map[string]interface{}) {
 	for key, value := range jsonData {
 		fieldType := ""
-		fieldName, _ := UpperFirst(key)
+		
+		fieldName := key
+		if formatter.CheckStartingDigit(key) {
+			fieldName = "_" + key
+		} else {
+			fieldName, _ = UpperFirst(key)
+		}
 
 		if parser.IsPrimitive(value) {
 			fieldType = parser.DetectType(value)

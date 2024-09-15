@@ -12,3 +12,14 @@ func FormatStruct(code string) (string, error) {
 	}
 	return string(formatted), nil
 }
+
+func CheckStartingDigit(s string) bool {
+	if len(s) == 0 {
+		return false
+	}
+	return s[0] >= '0' && s[0] <= '9'
+}
+
+func HandleStartingDigit(s string) string {
+	return "_" + s
+}
