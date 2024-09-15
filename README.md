@@ -20,15 +20,13 @@ To install json2go, open your terminal and run:
 go install github.com/Parutix/json2go@latest
 ```
 
-Be careful to place the path to your .json file correctly.
-
 ## 💻 Usage
 
 Once installed, you can use json2go with the following command:
 
 json2go <input.json> <output.go> struct_name  
 
-Replace <input.json> with your JSON file, <output.go> with the desired output file for the Go struct, and <struct_name> with the name you want for the generated struct.
+Replace <input.json> with your JSON file, <output.go> with the desired output file for the Go struct, and <struct_name> with the name you want for the generated struct. Be careful to place the path to your .json file correctly.
 
 ## 📞 Contact
 
