@@ -20,6 +20,8 @@ To install json2go, open your terminal and run:
 go install github.com/Parutix/json2go@latest
 ```
 
+Be careful to place the path to your .json file correctly.
+
 ## 💻 Usage
 
 Once installed, you can use json2go with the following command:
