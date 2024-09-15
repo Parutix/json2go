@@ -23,7 +23,9 @@ func TestEmptyJSON(t *testing.T) {
 
 	structName := "User"
 	str := GenerateStruct(structName, result)
-	expected := `type User struct {
+	expected := `package packagename
+	
+	type User struct {
 	}`
 
 	expected, _ = formatter.FormatStruct(expected)

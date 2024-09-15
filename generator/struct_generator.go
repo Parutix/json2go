@@ -10,7 +10,7 @@ import (
 
 func GenerateStruct(structName string, jsonData map[string]interface{}) string {
 	var sb strings.Builder
-	sb.WriteString("package main\n\n")
+	sb.WriteString("package packagename\n\n")
 	sb.WriteString(fmt.Sprintf("type %s struct {\n", structName))
 
 	for key, value := range jsonData {
