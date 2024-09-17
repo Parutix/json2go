@@ -14,16 +14,7 @@
         "longitude": -122.4194
       }
     },
-    "phoneNumbers": [
-      {
-        "type": "mobile",
-        "number": "415-555-6789"
-      },
-      {
-        "type": "fax",
-        "number": "415-555-9876"
-      }
-    ],
+    "phoneNumbers": [],
     "socialProfiles": [
       {
         "platform": "LinkedIn",

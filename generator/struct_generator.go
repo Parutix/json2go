@@ -42,6 +42,8 @@ func GenerateStruct(structName string, jsonData map[string]interface{}) string {
 						fieldType = parser.DetectType(v[0])
 						sb.WriteString(fmt.Sprintf("\t%s []%s `json:\"%s\"`\n", fieldName, fieldType, key))
 					}
+				} else if len(v) == 0 {
+					sb.WriteString(fmt.Sprintf("\t%s []interface{} `json:\"%s\"`\n", fieldName, key))
 				}
 			default:
 				fmt.Printf("Unhandled type for key: %s, value: %v\n", key, value)
@@ -82,6 +84,8 @@ func ContinueStruct(sb *strings.Builder, jsonData map[string]interface{}) {
 						fieldType = parser.DetectType(v[0])
 						sb.WriteString(fmt.Sprintf("\t%s []%s `json:\"%s\"`\n", fieldName, fieldType, key))
 					}
+				} else if len(v) == 0 {
+					sb.WriteString(fmt.Sprintf("\t%s []interface{} `json:\"%s\"`\n", fieldName, key))
 				}
 			default:
 				fmt.Printf("Unhandled type for key: %s, value: %v\n", key, value)
