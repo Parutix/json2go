@@ -17,8 +17,9 @@ func checkFileExists(filePath string) bool {
 
 // Run runs the CLI
 func Run() {
-	if len(os.Args) < 3 {
+	if len(os.Args) != 4 {
 		fmt.Println("Usage: json2go <input.json> <output.go> <structName>")
+		return
 	}
 
 	jsonFile := os.Args[1]
